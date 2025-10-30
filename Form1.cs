@@ -18,7 +18,8 @@ namespace Sprint_3
         public Form1()
         {
             InitializeComponent();
-            game = new SOSGame(); //sets game variable to SOSGame
+
+            pnlBoard.Enabled = false;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -42,11 +43,20 @@ namespace Sprint_3
 
             var mode = simpleGameButton.Checked ? GameMode.Simple : GameMode.General; //checks which game mode is selected
 
-            game.NewGame(boardSize, mode); //starts the game
+            if (mode = GameMode.Simple)
+            {
+                game = new SimpleGame(boardSize);
+            }
+            else
+            {
+                game = new GeneralGame(boardSize);
+            }
 
+            pnlBoard.Enabled = true;
             CreateBoardGrid(boardSize); //creates the grid based on the boardSize
 
             UpdateTurnLabel(); //updates the turn (red or blue)
+            UpdateScores();
         }
         
         private void CreateBoardGrid(int size)
@@ -79,6 +89,12 @@ namespace Sprint_3
         private void GridButton_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
+
+            if (clickedButton == null || game == null || game.State != GameState.InProgress)
+            {
+                return;
+            }
+
             Point position = (Point)clickedButton.Tag;
 
             Cell move; 
@@ -91,17 +107,28 @@ namespace Sprint_3
             {
                 move = redSButton.Checked ? Cell.S : Cell.O; //if not, put it for the red player
             }
-            if (game.MakeMove(position.X, position.Y, move)) //function for the moves
-            {
-                clickedButton.Text = move.ToString();
-                clickedButton.Enabled = false;
-                UpdateTurnLabel();
-            }
+            game.MakeMove(position.X, position.Y, move);
+            UpdateBoardFromGame();
+            UpdateScores();
+            CheckForGameOver();
         }
 
         private void UpdateTurnLabel() //updates turn label from red to blue and vice versa
         {
+            if (game == null)
+            {
+                lblTurn.Text = "Current Turn: ";
+                return;
+            }
+
             lblTurn.Text = $"Current Turn: {game.CurrentTurn}";
+
+            if (game.State != GameState.InProgress)
+            {
+                bluePlayer.Enabled = false;
+                redPlayer.Enabled = false;
+                return;
+            }
 
             if (game.CurrentTurn == Player.Blue)
             {
@@ -137,6 +164,68 @@ namespace Sprint_3
         private void redOButton_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void UpdateBoardFromGame()
+        {
+            if (game == null)
+            {
+                return;
+            }
+            for (int r = 0; r < game.BoardSize; r++)
+            {
+                for (int c = 0; c < game.BoardSize; c++)
+                {
+                    Cell cellState = game.GameBoard[r, c];
+                    if (cellState != Cell.Empty)
+                    {
+                        gridButtons[r, c].Text = cellState.ToString();
+                        gridButtons[r, c].Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void UpdateScores()
+        {
+            if (game == null)
+            {
+                lblBlueScore.Text = "Blue: 0";
+                lblRedScore.Text = "Red: 0";
+            }
+            else
+            {
+                lblBlueScore.Text = $"Blue: {game.BlueScore}";
+                lblRedScore.Text = $"Red: {game.RedScore}";
+            }
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CheckForGameOver()
+        {
+            if (game.State != GameState.InProgress)
+            {
+                pnlBoard.Enabled = false;
+                string message = "";
+                if (game.State == GameState.Draw)
+                {
+                    message = "The game is a draw!";
+                }
+                else if (game.State == GameState.BlueWin)
+                {
+                    message = "Blue player wins!";
+                }
+                else
+                {
+                    message = "Red player wins!";
+                }
+
+                MessageBox.Show(message, "Game Over!");
+            }
         }
     }
 }

@@ -40,14 +40,16 @@
             this.simpleGameLabel = new System.Windows.Forms.Label();
             this.generalGameLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.simpleGameButton = new System.Windows.Forms.RadioButton();
-            this.generalGameButton = new System.Windows.Forms.RadioButton();
             this.gameModeLabel = new System.Windows.Forms.Label();
+            this.generalGameButton = new System.Windows.Forms.RadioButton();
+            this.simpleGameButton = new System.Windows.Forms.RadioButton();
             this.gridSizeLabel = new System.Windows.Forms.Label();
             this.numBoardSize = new System.Windows.Forms.NumericUpDown();
             this.btnNewGame = new System.Windows.Forms.Button();
             this.pnlBoard = new System.Windows.Forms.Panel();
             this.lblTurn = new System.Windows.Forms.Label();
+            this.lblBlueScore = new System.Windows.Forms.Label();
+            this.lblRedScore = new System.Windows.Forms.Label();
             this.bluePlayer.SuspendLayout();
             this.redPlayer.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -58,10 +60,9 @@
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.textBox1.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(-2, 3);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox1.Location = new System.Drawing.Point(-1, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(410, 66);
+            this.textBox1.Size = new System.Drawing.Size(275, 66);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "SOS Game!";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -70,10 +71,9 @@
             // 
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.textBox2.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(7, 7);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox2.Location = new System.Drawing.Point(5, 5);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(148, 27);
+            this.textBox2.Size = new System.Drawing.Size(100, 27);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "Blue Player";
             // 
@@ -82,8 +82,7 @@
             this.blueSButton.AutoSize = true;
             this.blueSButton.Checked = true;
             this.blueSButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blueSButton.Location = new System.Drawing.Point(21, 75);
-            this.blueSButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.blueSButton.Location = new System.Drawing.Point(14, 49);
             this.blueSButton.Name = "blueSButton";
             this.blueSButton.Size = new System.Drawing.Size(32, 20);
             this.blueSButton.TabIndex = 2;
@@ -95,8 +94,7 @@
             // 
             this.blueOButton.AutoSize = true;
             this.blueOButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blueOButton.Location = new System.Drawing.Point(21, 130);
-            this.blueOButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.blueOButton.Location = new System.Drawing.Point(14, 84);
             this.blueOButton.Name = "blueOButton";
             this.blueOButton.Size = new System.Drawing.Size(36, 20);
             this.blueOButton.TabIndex = 3;
@@ -108,7 +106,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Location = new System.Drawing.Point(4, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 19);
             this.label1.TabIndex = 4;
@@ -120,7 +119,8 @@
             this.redSButton.AutoSize = true;
             this.redSButton.Checked = true;
             this.redSButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.redSButton.Location = new System.Drawing.Point(10, 72);
+            this.redSButton.Location = new System.Drawing.Point(7, 47);
+            this.redSButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.redSButton.Name = "redSButton";
             this.redSButton.Size = new System.Drawing.Size(35, 23);
             this.redSButton.TabIndex = 5;
@@ -133,7 +133,8 @@
             // 
             this.redOButton.AutoSize = true;
             this.redOButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.redOButton.Location = new System.Drawing.Point(10, 130);
+            this.redOButton.Location = new System.Drawing.Point(7, 84);
+            this.redOButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.redOButton.Name = "redOButton";
             this.redOButton.Size = new System.Drawing.Size(40, 23);
             this.redOButton.TabIndex = 6;
@@ -147,9 +148,11 @@
             this.bluePlayer.Controls.Add(this.blueOButton);
             this.bluePlayer.Controls.Add(this.blueSButton);
             this.bluePlayer.Controls.Add(this.textBox2);
-            this.bluePlayer.Location = new System.Drawing.Point(12, 257);
+            this.bluePlayer.Location = new System.Drawing.Point(8, 167);
+            this.bluePlayer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bluePlayer.Name = "bluePlayer";
-            this.bluePlayer.Size = new System.Drawing.Size(200, 199);
+            this.bluePlayer.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bluePlayer.Size = new System.Drawing.Size(133, 129);
             this.bluePlayer.TabIndex = 7;
             this.bluePlayer.TabStop = false;
             // 
@@ -158,9 +161,11 @@
             this.redPlayer.Controls.Add(this.label1);
             this.redPlayer.Controls.Add(this.redOButton);
             this.redPlayer.Controls.Add(this.redSButton);
-            this.redPlayer.Location = new System.Drawing.Point(1123, 257);
+            this.redPlayer.Location = new System.Drawing.Point(749, 167);
+            this.redPlayer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.redPlayer.Name = "redPlayer";
-            this.redPlayer.Size = new System.Drawing.Size(200, 183);
+            this.redPlayer.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.redPlayer.Size = new System.Drawing.Size(133, 119);
             this.redPlayer.TabIndex = 8;
             this.redPlayer.TabStop = false;
             // 
@@ -169,7 +174,8 @@
             this.simpleGameLabel.AutoSize = true;
             this.simpleGameLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleGameLabel.Location = new System.Drawing.Point(17, 68);
+            this.simpleGameLabel.Location = new System.Drawing.Point(11, 44);
+            this.simpleGameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.simpleGameLabel.Name = "simpleGameLabel";
             this.simpleGameLabel.Size = new System.Drawing.Size(151, 25);
             this.simpleGameLabel.TabIndex = 9;
@@ -180,7 +186,8 @@
             this.generalGameLabel.AutoSize = true;
             this.generalGameLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generalGameLabel.Location = new System.Drawing.Point(456, 68);
+            this.generalGameLabel.Location = new System.Drawing.Point(304, 44);
+            this.generalGameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.generalGameLabel.Name = "generalGameLabel";
             this.generalGameLabel.Size = new System.Drawing.Size(166, 25);
             this.generalGameLabel.TabIndex = 10;
@@ -193,49 +200,55 @@
             this.groupBox1.Controls.Add(this.simpleGameButton);
             this.groupBox1.Controls.Add(this.simpleGameLabel);
             this.groupBox1.Controls.Add(this.generalGameLabel);
-            this.groupBox1.Location = new System.Drawing.Point(416, 4);
+            this.groupBox1.Location = new System.Drawing.Point(277, 3);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(752, 114);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(501, 74);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
-            // 
-            // simpleGameButton
-            // 
-            this.simpleGameButton.AutoSize = true;
-            this.simpleGameButton.Checked = true;
-            this.simpleGameButton.Location = new System.Drawing.Point(258, 76);
-            this.simpleGameButton.Name = "simpleGameButton";
-            this.simpleGameButton.Size = new System.Drawing.Size(14, 13);
-            this.simpleGameButton.TabIndex = 11;
-            this.simpleGameButton.TabStop = true;
-            this.simpleGameButton.UseVisualStyleBackColor = true;
-            // 
-            // generalGameButton
-            // 
-            this.generalGameButton.AutoSize = true;
-            this.generalGameButton.Location = new System.Drawing.Point(707, 76);
-            this.generalGameButton.Name = "generalGameButton";
-            this.generalGameButton.Size = new System.Drawing.Size(14, 13);
-            this.generalGameButton.TabIndex = 12;
-            this.generalGameButton.TabStop = true;
-            this.generalGameButton.UseVisualStyleBackColor = true;
             // 
             // gameModeLabel
             // 
             this.gameModeLabel.AutoSize = true;
             this.gameModeLabel.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gameModeLabel.Location = new System.Drawing.Point(17, 22);
+            this.gameModeLabel.Location = new System.Drawing.Point(11, 14);
+            this.gameModeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.gameModeLabel.Name = "gameModeLabel";
             this.gameModeLabel.Size = new System.Drawing.Size(161, 28);
             this.gameModeLabel.TabIndex = 12;
             this.gameModeLabel.Text = "Game Mode";
             this.gameModeLabel.Click += new System.EventHandler(this.label2_Click);
             // 
+            // generalGameButton
+            // 
+            this.generalGameButton.AutoSize = true;
+            this.generalGameButton.Location = new System.Drawing.Point(471, 49);
+            this.generalGameButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.generalGameButton.Name = "generalGameButton";
+            this.generalGameButton.Size = new System.Drawing.Size(14, 13);
+            this.generalGameButton.TabIndex = 12;
+            this.generalGameButton.TabStop = true;
+            this.generalGameButton.UseVisualStyleBackColor = true;
+            // 
+            // simpleGameButton
+            // 
+            this.simpleGameButton.AutoSize = true;
+            this.simpleGameButton.Checked = true;
+            this.simpleGameButton.Location = new System.Drawing.Point(172, 49);
+            this.simpleGameButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.simpleGameButton.Name = "simpleGameButton";
+            this.simpleGameButton.Size = new System.Drawing.Size(14, 13);
+            this.simpleGameButton.TabIndex = 11;
+            this.simpleGameButton.TabStop = true;
+            this.simpleGameButton.UseVisualStyleBackColor = true;
+            // 
             // gridSizeLabel
             // 
             this.gridSizeLabel.AutoSize = true;
             this.gridSizeLabel.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridSizeLabel.Location = new System.Drawing.Point(1158, 117);
+            this.gridSizeLabel.Location = new System.Drawing.Point(772, 76);
+            this.gridSizeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.gridSizeLabel.Name = "gridSizeLabel";
             this.gridSizeLabel.Size = new System.Drawing.Size(113, 28);
             this.gridSizeLabel.TabIndex = 12;
@@ -243,7 +256,8 @@
             // 
             // numBoardSize
             // 
-            this.numBoardSize.Location = new System.Drawing.Point(1163, 168);
+            this.numBoardSize.Location = new System.Drawing.Point(775, 109);
+            this.numBoardSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numBoardSize.Maximum = new decimal(new int[] {
             10,
             0,
@@ -255,7 +269,7 @@
             0,
             0});
             this.numBoardSize.Name = "numBoardSize";
-            this.numBoardSize.Size = new System.Drawing.Size(120, 26);
+            this.numBoardSize.Size = new System.Drawing.Size(80, 20);
             this.numBoardSize.TabIndex = 13;
             this.numBoardSize.Value = new decimal(new int[] {
             3,
@@ -266,9 +280,10 @@
             // 
             // btnNewGame
             // 
-            this.btnNewGame.Location = new System.Drawing.Point(1163, 200);
+            this.btnNewGame.Location = new System.Drawing.Point(775, 130);
+            this.btnNewGame.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNewGame.Name = "btnNewGame";
-            this.btnNewGame.Size = new System.Drawing.Size(120, 51);
+            this.btnNewGame.Size = new System.Drawing.Size(80, 33);
             this.btnNewGame.TabIndex = 14;
             this.btnNewGame.Text = "New Game!";
             this.btnNewGame.UseVisualStyleBackColor = true;
@@ -276,28 +291,53 @@
             // 
             // pnlBoard
             // 
-            this.pnlBoard.Location = new System.Drawing.Point(456, 146);
+            this.pnlBoard.Location = new System.Drawing.Point(304, 95);
+            this.pnlBoard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlBoard.Name = "pnlBoard";
-            this.pnlBoard.Size = new System.Drawing.Size(500, 500);
+            this.pnlBoard.Size = new System.Drawing.Size(333, 325);
             this.pnlBoard.TabIndex = 15;
             // 
             // lblTurn
             // 
             this.lblTurn.AutoSize = true;
             this.lblTurn.Font = new System.Drawing.Font("Century Gothic", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTurn.Location = new System.Drawing.Point(14, 648);
+            this.lblTurn.Location = new System.Drawing.Point(9, 421);
+            this.lblTurn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTurn.Name = "lblTurn";
             this.lblTurn.Size = new System.Drawing.Size(190, 25);
             this.lblTurn.TabIndex = 16;
             this.lblTurn.Text = "Current Turn: Blue";
             this.lblTurn.Click += new System.EventHandler(this.lblTurn_Click);
             // 
+            // lblBlueScore
+            // 
+            this.lblBlueScore.AutoSize = true;
+            this.lblBlueScore.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBlueScore.Location = new System.Drawing.Point(203, 296);
+            this.lblBlueScore.Name = "lblBlueScore";
+            this.lblBlueScore.Size = new System.Drawing.Size(59, 21);
+            this.lblBlueScore.TabIndex = 17;
+            this.lblBlueScore.Text = "Blue: 0";
+            this.lblBlueScore.Click += new System.EventHandler(this.label2_Click_1);
+            // 
+            // lblRedScore
+            // 
+            this.lblRedScore.AutoSize = true;
+            this.lblRedScore.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRedScore.Location = new System.Drawing.Point(204, 327);
+            this.lblRedScore.Name = "lblRedScore";
+            this.lblRedScore.Size = new System.Drawing.Size(58, 21);
+            this.lblRedScore.TabIndex = 18;
+            this.lblRedScore.Text = "Red: 0";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1347, 743);
+            this.ClientSize = new System.Drawing.Size(898, 483);
+            this.Controls.Add(this.lblRedScore);
+            this.Controls.Add(this.lblBlueScore);
             this.Controls.Add(this.lblTurn);
             this.Controls.Add(this.pnlBoard);
             this.Controls.Add(this.btnNewGame);
@@ -307,7 +347,6 @@
             this.Controls.Add(this.redPlayer);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.bluePlayer);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -345,6 +384,8 @@
         private System.Windows.Forms.Button btnNewGame;
         private System.Windows.Forms.Panel pnlBoard;
         private System.Windows.Forms.Label lblTurn;
+        private System.Windows.Forms.Label lblBlueScore;
+        private System.Windows.Forms.Label lblRedScore;
     }
 }
 
