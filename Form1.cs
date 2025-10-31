@@ -12,7 +12,7 @@ namespace Sprint_3
 {
     public partial class Form1 : Form
     {
-        private SOSGame game;
+        private BaseGame game;
         private Button[,] gridButtons;
 
         public Form1()
@@ -43,7 +43,7 @@ namespace Sprint_3
 
             var mode = simpleGameButton.Checked ? GameMode.Simple : GameMode.General; //checks which game mode is selected
 
-            if (mode = GameMode.Simple)
+            if (mode == GameMode.Simple)
             {
                 game = new SimpleGame(boardSize);
             }
@@ -129,7 +129,6 @@ namespace Sprint_3
                 redPlayer.Enabled = false;
                 return;
             }
-
             if (game.CurrentTurn == Player.Blue)
             {
                 bluePlayer.Enabled = true ; //switches from blue to red

@@ -77,7 +77,7 @@ namespace Sprint_3
                     int r2 = r - directions[i, 0];
                     int c2 = c - directions[i, 1];
 
-                    if (IsOnBoard(r1, c1) && GameBoard[r1, c1] == Cell.S && IsOnBoard(r2, c2) && GameBoard[r2, c2] == Cell.s)
+                    if (IsOnBoard(r1, c1) && GameBoard[r1, c1] == Cell.S && IsOnBoard(r2, c2) && GameBoard[r2, c2] == Cell.S)
                     {
                         sosCount++;
                     }
