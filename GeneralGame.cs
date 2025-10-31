@@ -59,7 +59,51 @@ namespace Sprint_3
         }
         private int FindSOS(int r, int c)
         {
-            return 0;
+            int sosCount = 0;
+            Cell move = GameBoard[r, c];
+
+            int[,] directions =
+            {
+                { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 },
+                { 1, 1 }, { 1, -1 }, { -1, 1 }, { -1, -1 }
+            };
+
+            if (move == Cell.O)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    int r1 = r + directions[i, 0];
+                    int c1 = c + directions[i, 1];
+                    int r2 = r - directions[i, 0];
+                    int c2 = c - directions[i, 1];
+
+                    if (IsOnBoard(r1, c1) && GameBoard[r1, c1] == Cell.S && IsOnBoard(r2, c2) && GameBoard[r2, c2] == Cell.s)
+                    {
+                        sosCount++;
+                    }
+                }
+            }
+            else if (move == Cell.S)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    int r1 = r + directions[i, 0];
+                    int c1 = c + directions[i, 1];
+                    int r2 = r + 2 * directions[i, 0];
+                    int c2 = c + 2 * directions[i, 1];
+
+                    if (IsOnBoard(r1, c1) && GameBoard[r1, c1] == Cell.O && IsOnBoard(r2, c2) && GameBoard[r2, c2] == Cell.S)
+                    {
+                        sosCount++;
+                    }
+                }
+            }
+            return sosCount;
+        }
+
+        private bool IsOnBoard(int r, int c)
+        {
+            return r >= 0 && r < BoardSize && c >= 0 && c < BoardSize;
         }
     }
 }
