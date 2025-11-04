@@ -111,6 +111,7 @@ namespace Sprint_3
             UpdateBoardFromGame();
             UpdateScores();
             CheckForGameOver();
+            UpdateTurnLabel();
         }
 
         private void UpdateTurnLabel() //updates turn label from red to blue and vice versa

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sprint_3
 {
-    internal class SimpleGame : BaseGame
+    public class SimpleGame : BaseGame
     {
         public SimpleGame(int boardSize) : base(boardSize) { }
 

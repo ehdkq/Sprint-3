@@ -1,109 +1,120 @@
 ﻿using NUnit.Framework;
-using Sprint_2; // Your project's namespace
+using Sprint_3;
 using System;
 
-namespace SOSGame.Tests
+namespace Sprint_3.Tests
 {
     [TestFixture]
     public class SOSGameTests
     {
-        private Sprint_2.SOSGame game; // Using the full name to prevent conflicts
-
-        [SetUp]
-        public void Setup()
+        [Test]
+        //user story 5, simple game test
+        public void SimpleGame_FirstSOS_WinsTheGame()
         {
-            game = new Sprint_2.SOSGame();
+            BaseGame game = new SimpleGame(5);
+
+            //moves to create sos
+            game.MakeMove(0, 0, Cell.S); //blue turn
+            game.MakeMove(1, 1, Cell.S); //red turn
+            game.MakeMove(0, 1, Cell.O); //blue turn
+            game.MakeMove(1, 2, Cell.S); //red turn
+            game.MakeMove(0, 2, Cell.S); //blue final turn
+
+            //sets the game state to blue winning
+            Assert.That(game.State, Is.EqualTo(GameState.BlueWin));
         }
 
         [Test]
-        // Tests AC 1.1: The system accepts a valid board size
-        public void NewGame_AcceptsValidBoardSize_AC_1_1()
+        //user story 5, simple game draw
+        public void SimpleGame_FullBoard_NoSOS_IsDraw()
         {
-            game.NewGame(5, GameMode.Simple);
+            BaseGame game = new SimpleGame(3);
 
-            // Replaced Assert.AreEqual(5, game.BoardSize);
-            Assert.That(game.BoardSize, Is.EqualTo(5));
+            //set the whole board to just s
+            for (int r = 0; r < 3; r++)
+            {
+                for (int c = 0; c < 3; c++)
+                {
+                    //switch turn after move
+                    game.MakeMove(r, c, Cell.S);
+                }
+            }
+
+            Assert.That(game.MovesLeft, Is.EqualTo(0));
+            Assert.That(game.State, Is.EqualTo(GameState.Draw));
         }
 
         [Test]
-        // Tests AC 1.2: The system rejects an invalid board size (too small)
-        public void NewGame_RejectsInvalidBoardSize_AC_1_2()
+        //user story 6, making an sos gives extra turn in general game
+        public void GeneralGame_SOS_GivesPointAndExtraTurn()
         {
-            // Replaced Assert.Throws<...>(() => ...);
-            Assert.That(() => game.NewGame(2, GameMode.Simple), Throws.TypeOf<ArgumentOutOfRangeException>());
+            BaseGame game = new GeneralGame(5);
+
+            //make an sos
+            game.MakeMove(0, 0, Cell.S); //blue turn
+            game.MakeMove(0, 1, Cell.O); //blue turn
+            game.MakeMove(0, 2, Cell.S); //blue turn, should score
+
+            Assert.That(game.BlueScore, Is.EqualTo(1));
+            Assert.That(game.CurrentTurn, Is.EqualTo(Player.Blue)); //blue gets another turn
         }
 
         [Test]
-        // Tests AC 2.1: The player selects the "simple game" mode
-        public void NewGame_SetsSimpleMode_AC_2_1()
+        //user story 6, switches turn due to no sos
+        public void GeneralGame_NoSOS_SwitchesTurn()
         {
-            game.NewGame(8, GameMode.Simple);
+            BaseGame game = new GeneralGame(5);
 
-            // Replaced Assert.AreEqual(GameMode.Simple, game.Mode);
-            Assert.That(game.Mode, Is.EqualTo(GameMode.Simple));
+            game.MakeMove(0, 0, Cell.S); //blue turn
+
+            Assert.That(game.BlueScore, Is.EqualTo(0));
+            Assert.That(game.CurrentTurn, Is.EqualTo(Player.Red)); //switches to red turn
         }
 
         [Test]
-        // Tests AC 2.2: The player selects the 'general game' mode
-        public void NewGame_SetsGeneralMode_AC_2_2()
+        //user story 7, general game has a winner
+        public void GeneralGame_FullBoard_HighestScoreWins()
         {
-            game.NewGame(8, GameMode.General);
+            BaseGame game = new GeneralGame(3);
 
-            // Replaced Assert.AreEqual(GameMode.General, game.Mode);
-            Assert.That(game.Mode, Is.EqualTo(GameMode.General));
+            //make an sos
+            game.MakeMove(0, 0, Cell.S); //blue turn
+            game.MakeMove(0, 1, Cell.O); //blue turn
+            game.MakeMove(0, 2, Cell.S); //blue turn, blue scores 1 point and gets another turn
+
+            //fills board, no other scores
+            game.MakeMove(1, 0, Cell.S); //blue turn
+            game.MakeMove(1, 1, Cell.S); //red turn
+            game.MakeMove(1, 2, Cell.S); //blue turn
+            game.MakeMove(2, 0, Cell.S); //red turn
+            game.MakeMove(2, 1, Cell.S); //blue turn
+            game.MakeMove(2, 2, Cell.S); //red turn
+
+            Assert.That(game.MovesLeft, Is.EqualTo(0));
+            Assert.That(game.BlueScore, Is.EqualTo(1));
+            Assert.That(game.RedScore, Is.EqualTo(0));
+            Assert.That(game.State, Is.EqualTo(GameState.BlueWin)); //blue wins
         }
 
         [Test]
-        // Tests AC 3.1: Displays blank board and says whose turn it is
-        public void NewGame_InitializesBoardAndTurn_AC_3_1()
+        //user story 7, general game draw
+        public void GeneralGame_FullBoard_EqualScore_IsDraw()
         {
-            game.NewGame(8, GameMode.Simple);
+            BaseGame game = new GeneralGame(3);
 
-            Assert.That(game.CurrentTurn, Is.EqualTo(Player.Blue));
-            Assert.That(game.GameBoard[0, 0], Is.EqualTo(Cell.Empty));
-            Assert.That(game.GameBoard[7, 7], Is.EqualTo(Cell.Empty));
-        }
+            //fills board with just s, so no score
+            for (int r = 0; r < 3; r++)
+            {
+                for (int c = 0; c < 3; c++)
+                {
+                    game.MakeMove(r, c, Cell.S);
+                }
+            }
 
-        [Test]
-        // Tests AC 3.3: Needing to restart during a game
-        public void NewGame_ResetsExistingGame_AC_3_3()
-        {
-            game.NewGame(8, GameMode.Simple);
-            game.MakeMove(3, 3, Cell.S);
-
-            game.NewGame(8, GameMode.Simple);
-
-            Assert.That(game.CurrentTurn, Is.EqualTo(Player.Blue));
-            Assert.That(game.GameBoard[3, 3], Is.EqualTo(Cell.Empty));
-        }
-
-        [Test]
-        // Tests AC 4.1 & 6.1: A player makes a move
-        public void MakeMove_PlacesTokenAndSwitchesTurn_AC_4_1_and_6_1()
-        {
-            game.NewGame(8, GameMode.Simple);
-
-            bool result = game.MakeMove(4, 4, Cell.O);
-
-            // Replaced Assert.IsTrue(result);
-            Assert.That(result, Is.True);
-            Assert.That(game.GameBoard[4, 4], Is.EqualTo(Cell.O));
-            Assert.That(game.CurrentTurn, Is.EqualTo(Player.Red));
-        }
-
-        [Test]
-        // Tests AC 4.2 & 6.3: A player makes a move in an already occupied square
-        public void MakeMove_OnOccupiedCell_ReturnsFalse_AC_4_2_and_6_3()
-        {
-            game.NewGame(8, GameMode.Simple);
-            game.MakeMove(1, 1, Cell.S);
-
-            bool result = game.MakeMove(1, 1, Cell.O);
-
-            // Replaced Assert.IsFalse(result);
-            Assert.That(result, Is.False);
-            Assert.That(game.CurrentTurn, Is.EqualTo(Player.Red));
-            Assert.That(game.GameBoard[1, 1], Is.EqualTo(Cell.S));
+            Assert.That(game.MovesLeft, Is.EqualTo(0));
+            Assert.That(game.BlueScore, Is.EqualTo(0));
+            Assert.That(game.RedScore, Is.EqualTo(0));
+            Assert.That(game.State, Is.EqualTo(GameState.Draw)); //draw game
         }
     }
 }
